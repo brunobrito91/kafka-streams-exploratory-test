@@ -1,0 +1,26 @@
+spring:
+  kafka:
+    client-id: square-finder
+    bootstrap-servers:
+      - localhost:9091
+      - localhost:9092
+      - localhost:9093
+    template:
+      default-topic: input-topic
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: random-consumer
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  main:
+    allow-bean-definition-overriding: true
+---
+kafka:
+  topic:
+    input: input-topic
+    even-output: square-output
+    odd-output: double-output
+    half-output: half-output
